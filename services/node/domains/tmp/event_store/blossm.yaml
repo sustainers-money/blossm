@@ -1,0 +1,33 @@
+domain: tmp
+service: node
+
+schema:
+  name: String
+
+actions:
+  - some-action
+
+testing:
+  examples:
+    first:
+      action: some-action
+      payload:
+        name: some-name
+    second:
+      action: some-action
+      payload:
+        name: some-other-name
+    more: []
+
+  handlers:
+    - action: some-action
+      examples:
+        - state:
+            name: some-name
+          payload:
+            name: some-other-name
+          result:
+            name: some-other-name
+
+#don't change
+procedure: event-store

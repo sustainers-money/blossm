@@ -1,0 +1,25 @@
+domain: source
+service: core
+
+schema: {}
+
+actions:
+  - initialize
+
+testing:
+  examples:
+    first:
+      action: initialize
+      payload: {}
+    second:
+      action: initialize
+      payload: {}
+    more: []
+
+  handlers:
+    - action: initialize
+      examples:
+        - payload: {}
+
+#don't change
+procedure: event-store

@@ -1,0 +1,41 @@
+domain: profile
+service: core
+
+schema:
+  source:
+    root: String
+    service: String
+    network: String
+
+actions:
+  - change-source
+
+testing:
+  examples:
+    first:
+      action: change-source
+      payload:
+        source:
+          root: some-source-root
+          service: some-source-service
+          network: some-source-network
+    second:
+      action: change-source
+      payload:
+        source:
+          root: some-source-root
+          service: some-source-service
+          network: some-source-network
+    more: []
+
+  handlers:
+    - action: change-source
+      examples:
+        - payload:
+            source:
+              root: some-source-root
+              service: some-source-service
+              network: some-source-network
+
+#don't change
+procedure: event-store

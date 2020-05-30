@@ -1,0 +1,76 @@
+domain: wallet
+service: core
+
+schema:
+  root: String
+  domain: String
+  service: String
+  network: String
+  balance:
+    root: String
+    service: String
+    network: String
+  scene:
+    root: String
+    service: String
+    network: String
+
+actions:
+  - create
+
+testing:
+  examples:
+    first:
+      action: create
+      payload:
+        root: some-root
+        service: some-service
+        network: some-network
+        balance:
+          root: some-balance-root
+          service: some-balance-service
+          network: some-balance-network
+        scene:
+          root: some-scene-root
+          service: some-scene-service
+          network: some-scene-network
+    second:
+      action: create
+      payload:
+        root: some-other-root
+        service: some-other-service
+        network: some-other-network
+        balance:
+          root: some-balance-root
+          service: some-balance-service
+          network: some-balance-network
+        scene:
+          root: some-scene-root
+          service: some-scene-service
+          network: some-scene-network
+    more: []
+
+  handlers:
+    - action: create
+      examples:
+        - payload:
+            balance:
+              root: some-balance-root
+              service: some-balance-service
+              network: some-balance-network
+            scene:
+              root: some-scene-root
+              service: some-scene-service
+              network: some-scene-network
+          result:
+            balance:
+              root: some-balance-root
+              service: some-balance-service
+              network: some-balance-network
+            scene:
+              root: some-scene-root
+              service: some-scene-service
+              network: some-scene-network
+
+#don't change
+procedure: event-store

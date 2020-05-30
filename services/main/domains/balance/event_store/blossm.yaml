@@ -1,0 +1,104 @@
+domain: balance
+service: core
+
+schema:
+  amount: Number
+  source:
+    root: String
+    service: String
+    network: String
+
+actions:
+  - initialize
+  - add
+  - subtract
+
+testing:
+  examples:
+    first:
+      action: add
+      payload:
+        amount: 10
+    second:
+      action: subtract
+      payload:
+        amount: 30
+    more: []
+
+  handlers:
+    - action: initialize
+      examples:
+        - payload:
+            source:
+              root: some-source-root
+              service: some-source-service
+              network: some-source-network
+          result:
+            amount: 0
+            source:
+              root: some-source-root
+              service: some-source-service
+              network: some-source-network
+    - action: add
+      examples:
+        - state:
+            amount: 132
+            source:
+              root: some-source-root
+              service: some-source-service
+              network: some-source-network
+          payload:
+            amount: 10
+          result:
+            amount: 142
+            source:
+              root: some-source-root
+              service: some-source-service
+              network: some-source-network
+        - state:
+            amount: 0
+            source:
+              root: some-source-root
+              service: some-source-service
+              network: some-source-network
+          payload:
+            amount: 10
+          result:
+            amount: 10
+            source:
+              root: some-source-root
+              service: some-source-service
+              network: some-source-network
+    - action: subtract
+      examples:
+        - state:
+            amount: 132
+            source:
+              root: some-source-root
+              service: some-source-service
+              network: some-source-network
+          payload:
+            amount: 10
+          result:
+            amount: 122
+            source:
+              root: some-source-root
+              service: some-source-service
+              network: some-source-network
+        - state:
+            amount: 12
+            source:
+              root: some-source-root
+              service: some-source-service
+              network: some-source-network
+          payload:
+            amount: 14
+          result:
+            amount: -2
+            source:
+              root: some-source-root
+              service: some-source-service
+              network: some-source-network
+
+#don't change
+procedure: event-store

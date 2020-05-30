@@ -1,28 +1,55 @@
-network: sustainers.network
+network: sustainers.money
+core:
+  network: sustainers.network
+  registries:
+    production:
+    sandbox:
+    staging:
+    development: us.gcr.io/development-271815
+publicKeyUrls:
+  production: https://fact.sustainers.network/public-key
+  sandbox: https://fact.sandbox.sustainers.network/public-key
+  staging: https://fact.staging.sustainers.network/public-key
+  development: https://fact.development.sustainers.network/public-key
+dependencies:
+  sustainers.network:
+    keys:
+      production:
+        id:
+        secretName:
+      sandbox:
+        id:
+        secretName:
+      staging:
+        id: some-id
+        secretName: some-secret-name
+      development:
+        id: b695839a-164e-4b59-b73e-eb5d41ee7c9b
+        secretName: sustainers-network-secret
 vendors:
   cloud:
     gcp:
       projects:
-        production: production-271815
-        sandbox: sandbox-271815
-        staging: staging-271815
-        development: development-271815
+        production: astute-zephyr-272516
+        sandbox: sandbox-272516
+        staging: staging-272516
+        development: development-272516
       computeUrlIds:
         production:
         sandbox:
         staging:
-        development: 75tpixyafq
+        development: bcmbqvdpiq
       dnsZone: network
       secretsBuckets:
         production:
         sandbox:
         staging:
-        development: development-secrets-271815
+        development: development-secrets-272516
       rolesBuckets:
         production:
         sandbox:
         staging:
-        development: development-roles-271815
+        development: development-roles-272516
       defaults:
         region: us-central1
         memory: 128Mi
@@ -40,7 +67,7 @@ vendors:
         production:
         sandbox:
         staging:
-        development: view-store-sebjf.gcp.mongodb.net
+        development: view-store-chg6h.gcp.mongodb.net
       protocol: mongodb+srv
   eventStore:
     mongodb:
@@ -53,7 +80,7 @@ vendors:
         production:
         sandbox:
         staging:
-        development: event-store-7kjnk.gcp.mongodb.net
+        development: event-store-kny6x.gcp.mongodb.net
       protocol: mongodb+srv
   texting:
     twilio:
@@ -61,14 +88,14 @@ vendors:
         production:
         sandbox:
         staging:
-        development: "+12018018796"
+        development:
       sendingPhoneNumber:
         production:
         sandbox:
         staging:
-        development: "+16122237366"
+        development:
 defaults:
   viewStore: mongodb
   eventStore: mongodb
   cloud: gcp
-  texting: twilio
+  texting:

@@ -1,0 +1,252 @@
+domain: transaction
+service: core
+
+schema:
+  amount: Number
+  root: String
+  domain: String
+  service: String
+  network: String
+  from:
+    wallet:
+      root: String
+      service: String
+      network: String
+    profile:
+      root: String
+      service: String
+      network: String
+    source:
+      root: String
+      service: String
+      network: String
+  to:
+    wallet:
+      root: String
+      service: String
+      network: String
+    profile:
+      root: String
+      service: String
+      network: String
+    source:
+      root: String
+      service: String
+      network: String
+  reverseTransactions:
+    - amount: Number
+      root: String
+
+actions:
+  - initiate
+  - reverse
+
+testing:
+  examples:
+    first:
+      action: initiate
+      payload:
+        amount: 10
+        root: some-transaction-root
+        domain: some-transaction-domain
+        network: some-transaction-network
+        from:
+          wallet:
+            root: some-wallet-root
+            service: some-wallet-service
+            network: some-wallet-network
+          profile:
+            root: some-profile-root
+            service: some-profile-service
+            network: some-profile-network
+          source:
+            root: some-source-root
+            service: some-source-service
+            network: some-source-network
+        to:
+          wallet:
+            root: some-other-wallet-root
+            service: some-other-wallet-service
+            network: some-other-wallet-network
+          profile:
+            root: some-other-profile-root
+            service: some-other-profile-service
+            network: some-other-profile-network
+          source:
+            root: some-other-source-root
+            service: some-other-source-service
+            network: some-other-source-network
+    second:
+      action: reverse
+      payload:
+        reverseTransactions:
+          - amount: 20
+            root: some-transaction-root
+    more: []
+
+  handlers:
+    - action: initiate
+      examples:
+        - payload:
+            amount: 10
+            root: some-transaction-root
+            domain: some-transaction-domain
+            network: some-transaction-network
+            from:
+              wallet:
+                root: some-wallet-root
+                service: some-wallet-service
+                network: some-wallet-network
+              profile:
+                root: some-profile-root
+                service: some-profile-service
+                network: some-profile-network
+              source:
+                root: some-source-root
+                service: some-source-service
+                network: some-source-network
+            to:
+              wallet:
+                root: some-other-wallet-root
+                service: some-other-wallet-service
+                network: some-other-wallet-network
+              profile:
+                root: some-other-profile-root
+                service: some-other-profile-service
+                network: some-other-profile-network
+              source:
+                root: some-other-source-root
+                service: some-other-source-service
+                network: some-other-source-network
+          result:
+            amount: 10
+            appliedAmount: 10
+            root: some-transaction-root
+            domain: some-transaction-domain
+            network: some-transaction-network
+            from:
+              wallet:
+                root: some-wallet-root
+                service: some-wallet-service
+                network: some-wallet-network
+              profile:
+                root: some-profile-root
+                service: some-profile-service
+                network: some-profile-network
+              source:
+                root: some-source-root
+                service: some-source-service
+                network: some-source-network
+            to:
+              wallet:
+                root: some-other-wallet-root
+                service: some-other-wallet-service
+                network: some-other-wallet-network
+              profile:
+                root: some-other-profile-root
+                service: some-other-profile-service
+                network: some-other-profile-network
+              source:
+                root: some-other-source-root
+                service: some-other-source-service
+                network: some-other-source-network
+    - action: reverse
+      examples:
+        - state:
+            amount: 10
+            appliedAmount: 10
+            root: some-transaction-root
+            domain: some-transaction-domain
+            network: some-transaction-network
+            from:
+              wallet:
+                root: some-wallet-root
+                service: some-wallet-service
+                network: some-wallet-network
+              profile:
+                root: some-profile-root
+                service: some-profile-service
+                network: some-profile-network
+              source:
+                root: some-source-root
+                service: some-source-service
+                network: some-source-network
+            to:
+              wallet:
+                root: some-other-wallet-root
+                service: some-other-wallet-service
+                network: some-other-wallet-network
+              profile:
+                root: some-other-profile-root
+                service: some-other-profile-service
+                network: some-other-profile-network
+              source:
+                root: some-other-source-root
+                service: some-other-source-service
+                network: some-other-source-network
+          payload:
+            reverseTransactions:
+              - amount: 6
+                root: some-other-transaction-root
+          result:
+            amount: 10
+            appliedAmount: 4
+            root: some-transaction-root
+            domain: some-transaction-domain
+            network: some-transaction-network
+            from:
+              wallet:
+                root: some-wallet-root
+                service: some-wallet-service
+                network: some-wallet-network
+              profile:
+                root: some-profile-root
+                service: some-profile-service
+                network: some-profile-network
+              source:
+                root: some-source-root
+                service: some-source-service
+                network: some-source-network
+            to:
+              wallet:
+                root: some-other-wallet-root
+                service: some-other-wallet-service
+                network: some-other-wallet-network
+              profile:
+                root: some-other-profile-root
+                service: some-other-profile-service
+                network: some-other-profile-network
+              source:
+                root: some-other-source-root
+                service: some-other-source-service
+                network: some-other-source-network
+            reverseTransactions:
+              - amount: 6
+                root: some-other-transaction-root
+        - state:
+            amount: 10
+            appliedAmount: 4
+            root: some-transaction-root
+            domain: some-transaction-domain
+            network: some-transaction-network
+            reverseTransactions:
+              - amount: 6
+                root: some-other-transaction-root
+          payload:
+            reverseTransactions:
+              - amount: 4
+                root: another-transaction-root
+          result:
+            amount: 10
+            appliedAmount: 0
+            root: some-transaction-root
+            domain: some-transaction-domain
+            network: some-transaction-network
+            reverseTransactions:
+              - amount: 6
+                root: some-other-transaction-root
+              - amount: 4
+                root: another-transaction-root
+
+#don't change
+procedure: event-store

@@ -1,11 +1,12 @@
-domain: session
-service: core
+domain: tmp
+service: node
 
 commands:
-  - name: start
-    protection: none
-    service: core
-    network: development.sustainers.network
+  # - name: tmp
+  #   priviledges:
+  #     - some-permission
+  - name: tmp
+    protected: false
 
 whitelist:
   - "127.0.0.1"
