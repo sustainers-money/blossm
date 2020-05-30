@@ -30,26 +30,26 @@ vendors:
   cloud:
     gcp:
       projects:
-        production: astute-zephyr-272516
-        sandbox: sandbox-272516
-        staging: staging-272516
-        development: development-272516
+        production:
+        sandbox:
+        staging:
+        development:
       computeUrlIds:
         production:
         sandbox:
         staging:
-        development: bcmbqvdpiq
+        development:
       dnsZone: network
       secretsBuckets:
         production:
         sandbox:
         staging:
-        development: development-secrets-272516
+        development:
       rolesBuckets:
         production:
         sandbox:
         staging:
-        development: development-roles-272516
+        development:
       defaults:
         region: us-central1
         memory: 128Mi
@@ -62,12 +62,12 @@ vendors:
         production:
         sandbox:
         staging:
-        development: blossm
+        development:
       hosts:
         production:
         sandbox:
         staging:
-        development: view-store-chg6h.gcp.mongodb.net
+        development:
       protocol: mongodb+srv
   eventStore:
     mongodb:
@@ -75,12 +75,12 @@ vendors:
         production:
         sandbox:
         staging:
-        development: blossm
+        development:
       hosts:
         production:
         sandbox:
         staging:
-        development: event-store-kny6x.gcp.mongodb.net
+        development:
       protocol: mongodb+srv
   texting:
     twilio:
